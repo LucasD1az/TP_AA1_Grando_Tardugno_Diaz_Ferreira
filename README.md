@@ -1,6 +1,6 @@
-# TP Regresión: predicción de precios de casas
+# TP_AA1_Grando_Tardugno_Diaz
 
-Trabajo práctico de **Aprendizaje Automático 1**, Tecnicatura en Inteligencia
+Trabajos prácticos de **Aprendizaje Automático 1**, Tecnicatura en Inteligencia
 Artificial, FCEIA, UNR. Cuatrimestre 2, 2026.
 
 ## Integrantes
@@ -10,74 +10,82 @@ Artificial, FCEIA, UNR. Cuatrimestre 2, 2026.
 - Lucas Díaz
 - Facundo Ferreira
 
-## Problema
+## Contenido del repositorio
 
-Predecir el valor mediano de viviendas (`MEDV`, en miles de dólares) del dataset
-de precios de casas de Boston, a partir de 13 características de la vivienda y su
-entorno (criminalidad, cantidad de habitaciones, accesibilidad, nivel
-socioeconómico de la zona, entre otras).
-
-Se resuelve con regresión lineal múltiple: mínimos cuadrados (`LinearRegression`),
-gradiente descendiente y métodos de regularización (Ridge, Lasso, Elastic Net),
-comparando los modelos entre sí.
-
-## Contenido
-
-| Archivo | Descripción |
+| Carpeta | Descripción |
 |---|---|
-| `TP-regresion-AA1.ipynb` | Notebook con el desarrollo completo del trabajo |
-| `house-prices-tp.csv` | Dataset (556 filas, 14 columnas) |
-| `requirements.txt` | Versiones exactas de las bibliotecas usadas |
+| [`TP_1/`](TP_1/) | TP de regresión: predicción de precios de casas |
 
-## Cómo ejecutarlo
+Cada carpeta tiene su propio `README.md` con la consigna, los archivos y cómo
+correr el notebook. Las instrucciones de entorno de acá abajo valen para todas.
+
+## Preparar el entorno
 
 Requiere **Python 3.12**. Las dependencias se instalan en un entorno virtual
 (`.venv/`), que no se versiona: cada uno lo crea en su máquina.
 
-### Preparar el entorno (una sola vez)
+### Crearlo (una sola vez)
 
 Desde la raíz del repositorio:
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
+python -m venv .venv
+```
+
+Activarlo:
+
+```bash
+source .venv/bin/activate      # Linux y macOS
+.venv\Scripts\activate         # Windows
+```
+
+E instalar las bibliotecas:
+
+```bash
 pip install -r requirements.txt
 ```
 
-En Windows, la segunda línea es `.venv\Scripts\activate`.
-
-### Entrar al entorno (cada vez)
+### Activarlo (cada vez)
 
 Una vez creado, en cada sesión nueva de terminal alcanza con activarlo:
 
 ```bash
-source .venv/bin/activate
+source .venv/bin/activate      # Linux y macOS
+.venv\Scripts\activate         # Windows
 ```
 
 Se sabe que está activo porque el prompt pasa a mostrar `(.venv)` adelante. Para
 salir, `deactivate`.
 
-### Ejecutar el notebook
+### Abrir un notebook
 
-Con el entorno activo:
+Con el entorno activo, desde la raíz del repositorio:
 
 ```bash
-jupyter notebook TP-regresion-AA1.ipynb
+jupyter notebook TP_1/TP-regresion-AA1.ipynb
 ```
 
-El notebook lee el dataset desde la misma carpeta y se ejecuta de principio a fin
-en orden, sin pasos manuales intermedios.
+> **Si usás VS Code** en lugar de Jupyter, elegí `.venv` como kernel
+> (**Select Kernel**, arriba a la derecha). Si no, el notebook corre con el
+> Python del sistema, que no tiene las bibliotecas instaladas.
 
-> Si lo abrís desde VS Code en lugar de Jupyter, elegí `.venv` como kernel
-> (**Select Kernel** arriba a la derecha). Si no, corre con el Python del sistema,
-> que no tiene las bibliotecas instaladas.
+## Dependencias
 
-### Actualizar las dependencias
+`requirements.txt` fija las versiones exactas de las bibliotecas que usamos de
+forma directa, no sus dependencias internas:
 
-`requirements.txt` lista sólo las bibliotecas que usamos directamente, no sus
-dependencias internas. Si se suma una nueva, se la agrega a mano al archivo con
-la versión que quedó instalada:
+```
+ipykernel      jupyter        matplotlib
+numpy          pandas         scikit-learn      seaborn
+```
+
+Si se suma una biblioteca nueva, se la agrega a mano al archivo con la versión
+que quedó instalada. Para averiguarla:
 
 ```bash
 pip show <biblioteca> | grep -i version
 ```
+
+La razón de fijar versiones es que los resultados de los notebooks se puedan
+reproducir tal cual: algunas funciones de scikit-learn cambiaron de firma entre
+versiones y los números no darían iguales.
