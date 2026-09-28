@@ -71,8 +71,9 @@ para cada modelo.
 
 ### Optimización de hiperparámetros y comparación
 
-Barrido del paso de aprendizaje y las épocas del gradiente, y de `alpha` en los
-tres modelos regularizados, eligiendo siempre por el error de validación. El
+Barrido del paso de aprendizaje y las épocas del gradiente, del tamaño del lote
+del mini-batch, y de `alpha` en los tres modelos regularizados, eligiendo siempre
+por el error de validación. El
 conjunto de prueba se usa una sola vez, en la comparación final de los diez
 modelos.
 
