@@ -23,7 +23,30 @@ comparamos entre sí.
 | `TP-regresion-AA1.ipynb` | **Notebook con el desarrollo completo.** Es la entrega |
 | `house-prices-tp.csv` | Dataset: 556 filas y 14 columnas |
 | `TrabajoPrácticoRegresiónAA1_2026C2.pdf` | Consigna de la cátedra |
-| `Implementaciones-Descenso-del-Gradiente.ipynb` | Notebook de la Unidad 2, de donde salen las implementaciones de gradiente que usamos |
+| `Implementaciones-Descenso-del-Gradiente.ipynb` | Notebook de la Unidad 2 con las funciones de gradiente que usamos, con los cambios que se detallan abajo |
+
+## Cambios a las funciones de descenso por gradiente
+
+El TP no tiene implementaciones propias del gradiente: importa
+`gradient_descent`, `stochastic_gradient_descent` y `mini_batch_gradient_descent`
+directamente desde `Implementaciones-Descenso-del-Gradiente.ipynb`. Como ese
+notebook también carga datasets que no están en el repositorio, el TP no lo corre
+entero: ejecuta sólo las tres celdas que definen las funciones.
+
+A las tres funciones les hicimos dos cambios, y ninguno toca el algoritmo:
+
+- Antes devolvían sólo los pesos `W`, y ahora devuelven
+  `W, train_errors, test_errors`: el error de cada paso, que ya calculaban para
+  graficarlo y después descartaban. El TP lo necesita para comparar las tres
+  variantes entre sí y contra mínimos cuadrados.
+- Tienen un parámetro nuevo, `graficar`, que vale `True` por defecto y entonces
+  deja el gráfico igual que en la versión original. El TP lo pone en `False` en
+  los barridos de hiperparámetros, para no dibujar un gráfico por cada
+  configuración.
+
+Los docstrings están actualizados con los dos cambios. Las celdas de ejemplo del
+notebook, que llaman a las funciones con sus propios datos, quedaron como
+estaban.
 
 ## Cómo correrlo
 
@@ -33,7 +56,8 @@ Con el entorno activado (ver el [README del repositorio](../README.md)):
 jupyter notebook TP-regresion-AA1.ipynb
 ```
 
-El notebook lee el dataset desde esta misma carpeta y se ejecuta de principio a
+El notebook lee el dataset y las funciones de gradiente desde esta misma carpeta
+y se ejecuta de principio a
 fin en orden, sin pasos manuales intermedios. La semilla está fijada, así que los
 números son los mismos en cada corrida.
 
@@ -62,7 +86,8 @@ Quedan 490 observaciones, repartidas en 343 / 49 / 98.
 
 - `LinearRegression` (mínimos cuadrados) como modelo de referencia.
 - Gradiente descendente en sus tres variantes: por lotes, estocástico y
-  mini-batch, con las curvas de error contra épocas.
+  mini-batch, con los gráficos de error por paso de las funciones originales y
+  una comparación de las tres por época.
 - Regularización: Ridge, Lasso y Elastic Net, con los caminos de coeficientes y
   un test de estabilidad por remuestreo.
 
@@ -81,7 +106,7 @@ modelos.
 
 El mejor modelo es **Ridge con `alpha = 95.5`**: R² de 0,7725 y RMSE de 3,85 mil
 dólares sobre el conjunto de prueba. Los otros siete modelos bien configurados
-quedan dentro del 2%, así que lo que movió el resultado fue el preprocesamiento y
+quedan dentro del 1%, así que lo que movió el resultado fue el preprocesamiento y
 no la elección del modelo.
 
 ## Estado
