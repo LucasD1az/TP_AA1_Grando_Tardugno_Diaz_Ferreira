@@ -15,6 +15,7 @@ Artificial, FCEIA, UNR. Cuatrimestre 2, 2026.
 | Carpeta | Descripción |
 |---|---|
 | [`TP_1/`](TP_1/) | TP de regresión: predicción de precios de casas |
+| [`TP_2/`](TP_2/) | TP de clasificación: predicción de lluvia en Australia |
 
 Cada carpeta tiene su propio `README.md` con la consigna, los archivos y cómo
 correr el notebook. Las instrucciones de entorno de acá abajo valen para todas.
@@ -63,6 +64,7 @@ Con el entorno activo, desde la raíz del repositorio:
 
 ```bash
 jupyter notebook TP_1/TP-regresion-AA1.ipynb
+jupyter notebook TP_2/TP-clasificacion-AA1.ipynb
 ```
 
 > **Si usás VS Code** en lugar de Jupyter, elegí `.venv` como kernel
