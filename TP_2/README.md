@@ -55,7 +55,7 @@ La clase positiva es la lluvia, y un falso negativo (no avisar y que llueva) se 
 
 ### Modelo base
 
-Siempre "No" (accuracy 0,776, no detecta ninguna lluvia) y persistencia: mañana llueve si hoy llovió más de 1 mm (recall 0,443). Con la misma tasa de falsas alarmas que la persistencia, la regresión logística detecta el 72,3% de las lluvias contra el 44,3%.
+Siempre "No" (accuracy 0,776, no detecta ninguna lluvia), aleatorio con la proporción de lluvia de entrenamiento (recall 0,225, sobre la diagonal de la curva ROC) y persistencia: mañana llueve si hoy llovió más de 1 mm (recall 0,443). Con la misma tasa de falsas alarmas que la persistencia, la regresión logística detecta el 72,3% de las lluvias contra el 44,3%. Su log loss (0,355) es un tercio menor que la de darle a todos los días la proporción de lluvia de entrenamiento (0,532).
 
 ## Estado
 
