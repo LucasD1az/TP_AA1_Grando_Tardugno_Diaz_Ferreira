@@ -44,13 +44,26 @@ Las decisiones que más pesan en el resultado, todas justificadas en el notebook
 
 Todo el preprocesamiento está en un único `Pipeline` de scikit-learn, ajustado sólo con entrenamiento. Quedan 98.004 / 14.016 / 28.048 filas con 73 columnas.
 
+### Regresión logística
+
+La clase positiva es la lluvia, y un falso negativo (no avisar y que llueva) se considera peor que una falsa alarma. Por eso el criterio, fijado antes de ver resultados, es maximizar el recall de la lluvia con una precisión de al menos 0,5.
+
+- Se comparan dos modelos, sin balanceo y con `class_weight="balanced"`. Tienen el mismo AUC (0,877) y, cada uno con su umbral, los mismos errores: balancear equivale a bajar el umbral, y además infla las probabilidades. Se elige el modelo sin balanceo.
+- El umbral se elige en validación: 0,18, no 0,5. El umbral más cercano a la esquina de la curva ROC, usado como control, da casi lo mismo (0,196).
+- No hay sobreajuste (entrenamiento y validación dan casi igual), y con menos regularización el modelo no se ajusta mejor: el límite es la frontera lineal.
+- En prueba detecta el 81,8% de los días de lluvia, con una precisión de 0,482, apenas por debajo del piso, y un AUC de 0,867.
+
+### Modelo base
+
+Siempre "No" (accuracy 0,776, no detecta ninguna lluvia) y persistencia: mañana llueve si hoy llovió más de 1 mm (recall 0,443). Con la misma tasa de falsas alarmas que la persistencia, la regresión logística detecta el 72,3% de las lluvias contra el 44,3%.
+
 ## Estado
 
 | Ítem de la consigna | Estado |
 |---|---|
 | 1. Análisis descriptivo y preprocesamiento | Completo |
-| 2. Regresión logística | Pendiente |
-| 3. Modelo base | Pendiente |
+| 2. Regresión logística | Completo |
+| 3. Modelo base | Completo |
 | 4. Optimización de hiperparámetros | Pendiente |
 | 5. Explicabilidad | Pendiente |
 | 6. AutoML con PyCaret | Pendiente |
